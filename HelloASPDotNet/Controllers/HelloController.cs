@@ -41,25 +41,14 @@ namespace HelloASPDotNet.Controllers
 
         public static string CreateMessage(string name, string lang)
         {
-            string greeting;
-            switch (lang)
+            string greeting = lang switch
             {
-                case "fr":
-                    greeting = "Bonjour, ";
-                    break;
-                case "sp":
-                    greeting = "Hola, ";
-                    break;
-                case "kr":
-                    greeting = "Ahn Nyeong, ";
-                    break;
-                case "se":
-                    greeting = "Hej, ";
-                    break;
-                default:
-                    greeting = "Hello, ";
-                    break;
-            }
+                "fr" => "Bonjour, ",
+                "sp" => "Hola, ",
+                "kr" => "Ahn Nyeong, ",
+                "se" => "Hej, ",
+                _ => "Hello, ",
+            };
             return greeting + name;
         }
     }

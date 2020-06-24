@@ -13,18 +13,7 @@ namespace HelloASPDotNet.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            string html = "<form method='post' action='/helloworld/'>" +
-                "<input type='text' name='name' />" +
-                "<select name='lang'>" +
-                    "<option value='en'>English</option>" +
-                    "<option value='fr'>French</option>" +
-                    "<option value='sp'>Spanish</option>" +
-                    "<option value='kr'>Korean</option>" +
-                    "<option value='se'>Swedish</option>" +
-                "</select>" +
-                "<input type='submit' value='GreetMe!' />" +
-                "</form>";
-            return Content(html, "text/html");
+            return View("index");
         }
 
         // Get: /hello/welcome
@@ -35,8 +24,9 @@ namespace HelloASPDotNet.Controllers
         [HttpPost]
         public IActionResult Welcome(string name = "World", string lang = "en")
         {
-            string greeting = CreateMessage(name, lang);
-            return Content("<h1>" + greeting + "!</h1>", "text/html");
+            ViewBag.person = name;
+            ViewBag.greeting = CreateMessage(name, lang);
+            return View();
         }
 
         public static string CreateMessage(string name, string lang)
